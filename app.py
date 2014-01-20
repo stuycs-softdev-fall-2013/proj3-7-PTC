@@ -30,6 +30,22 @@ def tr():
         if request.method == 'GET':
                 return render_template("teacherregister.html")
 
+@app.route('/parentpostlogin',methods=["POST","GET"])
+def ppl():
+        if request.method == 'GET':
+                return render_template("parentpostlogin.html")
+
+@app.route('/teacherpostlogin',methods=["POST","GET"])
+def tpl():
+        if request.method == 'GET':
+                return render_template("teacherpostlogin.html")
+
+@app.route('/logout',methods=["POST","GET"])
+def logout():
+        if request.method == 'GET':
+		#logoutcode
+                return redirect("/")
+
 
 
 
