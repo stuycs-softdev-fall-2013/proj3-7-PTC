@@ -18,14 +18,9 @@ def pl():
         if request.method == 'GET':
                 return render_template("parentlogin.html")
 	else:
-		usern = request.form['Username'].encode('ascii','ignore')
-		passw = request.form['Password'].encode('ascii','ignore')
-		if login.loginParent(usern,passw):
-			session['Username'] = usern
-			return redirect ("/success")
-		else:
-			return redirect ("/login")
-		
+		usern = request.form['username'].encode('ascii','ignore')
+		passw = request.form['password'].encode('ascii','ignore')
+
 		
 
 @app.route('/teacherlogin',methods=["POST","GET"])
@@ -33,26 +28,35 @@ def tl():
         if request.method == 'GET':
                 return render_template("teacherlogin.html")
 	else:
-		usern = request.form['Username'].encode('ascii','ignore')
-		passw = request.form['Password'].encode('ascii','ignore')
-		if login.loginTeacher(usern,passw):
-			session['Username'] = usern
-			return redirect ("/success")
-		else:
-			return redirect ("/login")
+		usern = request.form['username'].encode('ascii','ignore')
+		passw = request.form['password'].encode('ascii','ignore')
+
 
 @app.route('/parentregister',methods=["POST","GET"])
 def pr():
         if request.method == 'GET':
                 return render_template("parentregister.html")
 	else:
-		usern = request.form["Username"].encode('ascii','ignore')
-		passw = request.form["Password required"].encode('ascii','ignore')
+		usern = request.form["username"].encode('ascii','ignore')
+		passw = request.form["password"].encode('ascii','ignore')
+		child = request.form["child"].encode('ascii','ignore')
+		name = request.form["parent"].encode('ascii','ignore')
+		digit = request.form["id"].encode('ascii','ignore')
+		registerParent(usern, passw, child, name, digit)
+		return redirect(url_for('pl'))
 
 @app.route('/teacherregister',methods=["POST","GET"])
 def tr():
         if request.method == 'GET':
                 return render_template("teacherregister.html")
+	else:
+		usern = request.form["username"].encode('ascii','ignore')
+		passw = request.form["password"].encode('ascii','ignore')
+		subject = request.form["subject"].encode('ascii','ignore')
+		teacher = request.form["teacher"].encode('ascii','ignore')
+		veri = request.form["zamansky"].encode('ascii','ignore')
+		registerTeacher(usern, passw, subject, teacher, veri)
+		return redirect(url_for('tl'))
 
 
 @app.route('/parentpostlogin',methods=["POST","GET"])
@@ -70,7 +74,7 @@ def tpl():
 @app.route('/logout',methods=["POST","GET"])
 def logout():
         if request.method == 'GET':
-		#logoutcode
+		session.pop('username', None)
                 return redirect("/")
 	
 
