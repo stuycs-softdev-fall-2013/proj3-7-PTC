@@ -1,7 +1,7 @@
 #!usr/bin/python
 
 import sqlite3
-import manageDB.py
+
 
 def registerParent(username, password, child, parent, sid):
     insertParent(parent, sid)
