@@ -4,6 +4,8 @@ import urllib2
 
 app=Flask(__name__)
 app.secret_key = "PTC"
+registeredteacherlist = ["Zamansky, Mike", "Brownmykolyk, Topher", "Brooks, Peter", "Cocoros, Jim"]
+
 
 @app.route('/',methods=["POST","GET"])
 def home():
@@ -32,11 +34,13 @@ def tr():
 
 @app.route('/parentpostlogin',methods=["POST","GET"])
 def ppl():
+#IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
         if request.method == 'GET':
-                return render_template("parentpostlogin.html")
+                return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist))
 
 @app.route('/teacherpostlogin',methods=["POST","GET"])
 def tpl():
+#IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
         if request.method == 'GET':
                 return render_template("teacherpostlogin.html")
 
