@@ -19,3 +19,7 @@ proj3-7-PTC
 #Need
 
   Right now, we need login/register to be fully functional. We need to get information such as student to student id, list of teachers, teachers to teaching subject.
+
+#Edits
+  
+  1/25 - Tinkering with postlogin pages. Need to make the page where parents connect to teachers. ALOT of backend stuff needed.
