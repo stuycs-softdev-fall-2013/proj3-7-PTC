@@ -70,13 +70,18 @@
       <!-- Feed Entry -->
       <div class="row">
         <div class="large-10 columns">
-	  {% print teacher[i] %} 
+	  <form>
+	    <input type = "checkbox" name = "teacher" value = {% print teacher[i] %}>
+
+	  {% print teacher[i] %}
         </div>
       </div>
       <!-- End Feed Entry -->
  
       <hr />
       {% endfor %}
+<input type = "submit" value = "Submit">
+</form>
 
     </div>
 
