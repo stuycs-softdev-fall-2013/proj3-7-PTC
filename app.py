@@ -42,8 +42,8 @@ def pr():
 		child = request.form["child"].encode('ascii','ignore')
 		name = request.form["parent"].encode('ascii','ignore')
 		digit = request.form["id"].encode('ascii','ignore')
-		registerParent(usern, passw, child, name, digit)
-		return redirect(url_for('pl'))
+		login.registerParent(usern, passw, child, name, digit)
+		return redirect('/parentlogin')
 
 @app.route('/teacherregister',methods=["POST","GET"])
 def tr():
@@ -55,7 +55,7 @@ def tr():
 		subject = request.form["subject"].encode('ascii','ignore')
 		teacher = request.form["teacher"].encode('ascii','ignore')
 		veri = request.form["zamansky"].encode('ascii','ignore')
-		registerTeacher(usern, passw, subject, teacher, veri)
+		login.registerTeacher(usern, passw, subject, teacher, veri)
 		return redirect(url_for('tl'))
 
 

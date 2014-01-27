@@ -4,7 +4,7 @@ import sqlite3
 import manageDB
 
 def registerParent(username, password, child, parent, sid):
-    insertParent(parent, sid)
+    manageDB.insertParent(parent, sid)
     conn = sqlite3.connect("ParentTeacher.db")
     conn.execute('''INSERT INTO PARENTLOGIN 
     (USERNAME, PASSWORD, CHILD, NAME, STUDENTID) \
@@ -22,7 +22,7 @@ def loginParent(username, password):
         pass
     
 def registerTeacher(username, password, subject, room, teacher, ver):
-    insertTeacher(teacher, room)
+    manageDB.insertTeacher(teacher, room)
     conn = sqlite3.connect("ParentTeacher.db")
     conn.execute('''INSERT INTO TEACHERLOGIN 
     (USERNAME, PASSWORD, SUBJECT, ROOM, NAME) \
