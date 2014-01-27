@@ -3,20 +3,24 @@
 import sqlite3
 
 def insertTeacher(name, room):
-    conn = sqlite3.connect("ParentTeacher.db")
-    q = '''INSERT INTO TEACHERS 
+    conn = sqlite3.connect('ParentTeacher.db')
+    conn.execute('''
+    CREATE TABLE if not exists TEACHERS(NAME text, ROOM text)
+''')
+    conn.execute ('''INSERT INTO TEACHERS 
     (NAME, ROOM) \
-    VALUES (?, ?)'''
-    conn.execute(q, [name, room])
+    VALUES (?, ?)''',[name, room])
     conn.commit()
     conn.close()
 
 def insertParent(name, sid):
-    conn = sqlite3.connect("ParentTeacher.db")
-    q = '''INSERT INTO PARENTS 
+    conn = sqlite3.connect('ParentTeacher.db')
+    conn.execute('''
+    CREATE TABLE if not exists PARENTS(NAME text, ID text)
+''')
+    conn.execute ('''INSERT INTO PARENTS 
     (NAME, ID) \
-    VALUES (?, ?)'''
-    conn.execute(q, [name, sid])
+    VALUES (?, ?)''',[name, sid])
     conn.commit()
     conn.close()
 

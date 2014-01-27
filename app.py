@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template,session,redirect,request,url_for
 import urllib2
+import sqlite3
 import login
 
 app=Flask(__name__)
@@ -20,7 +21,11 @@ def pl():
 	else:
 		usern = request.form['username'].encode('ascii','ignore')
 		passw = request.form['password'].encode('ascii','ignore')
-
+		if login.loginParent(usern,passw):
+			session['username'] = usern
+			return redirect ("/parentpostlogin")
+		else:
+			return redirect ("/parentlogin")
 		
 
 @app.route('/teacherlogin',methods=["POST","GET"])
@@ -30,7 +35,11 @@ def tl():
 	else:
 		usern = request.form['username'].encode('ascii','ignore')
 		passw = request.form['password'].encode('ascii','ignore')
-
+		if login.loginTeacher(usern,passw):
+			session['username'] = usern
+			return redirect ("/teacherpostlogin")
+		else:
+			return redirect ("/teacherlogin")
 
 @app.route('/parentregister',methods=["POST","GET"])
 def pr():
@@ -53,10 +62,11 @@ def tr():
 		usern = request.form["username"].encode('ascii','ignore')
 		passw = request.form["password"].encode('ascii','ignore')
 		subject = request.form["subject"].encode('ascii','ignore')
+		room = request.form["room"].encode('ascii','ignore')
 		teacher = request.form["teacher"].encode('ascii','ignore')
 		veri = request.form["zamansky"].encode('ascii','ignore')
-		login.registerTeacher(usern, passw, subject, teacher, veri)
-		return redirect(url_for('tl'))
+		login.registerTeacher(usern, passw, subject, room, teacher, veri)
+		return redirect('/teacherlogin')
 
 
 @app.route('/parentpostlogin',methods=["POST","GET"])
@@ -81,4 +91,4 @@ def logout():
 
 
 if __name__ == '__main__':
-        app.run(debug=True, host='0.0.0.0', port =7002)
+        app.run(debug=True, host='0.0.0.0', port =7769)
