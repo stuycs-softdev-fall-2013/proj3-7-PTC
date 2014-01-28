@@ -88,7 +88,11 @@ def logout():
                 return redirect("/")
 	
 
-
+def isLoggedIn():
+	if "username" in session:
+		return True
+	else:
+		return False
 
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0', port =7769)
