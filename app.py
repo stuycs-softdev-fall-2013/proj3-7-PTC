@@ -87,6 +87,7 @@ def ppl():
 		else:
 			return redirect ('/')
 
+
 @app.route('/teacherpostlogin',methods=["POST","GET"])
 def tpl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
@@ -101,7 +102,10 @@ def logout():
 		session.pop('username', None)
                 return redirect("/")
 	
-
+@app.route('/chooser', methods = ["POST","GET"])
+def chooser():
+	if request.method == 'GET':
+		return render_template ('chooser.html', teacher = registeredteacherlist, length = len(registeredteacherlist), name = login.getParentName(getUsername()))
 
 
 if __name__ == '__main__':
