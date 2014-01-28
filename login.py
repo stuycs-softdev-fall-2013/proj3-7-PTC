@@ -44,3 +44,15 @@ def loginTeacher(username, password):
         return True
     else:
         return False
+
+def getTeacherName(username):
+    conn = sqlite3.connect("ParentTeacher.db")
+    cursor = conn.execute('''SELECT NAME FROM TEACHERLOGIN
+    WHERE USERNAME = ?''', [username]);
+    return cursor.fetchone()[0]
+
+def getParentName(username):
+    conn = sqlite3.connect("ParentTeacher.db")
+    cursor = conn.execute('''SELECT NAME FROM PARENTLOGIN
+    WHERE USERNAME = ?''', [username]);
+    return cursor.fetchone()[0] 
