@@ -33,7 +33,7 @@
             <li class="has-dropdown">
 	    <li><label>Reservations Per 4 minutes</label></li>
 	    {% for i in range(45) %}
-            <li><a href="#">{% print (i * 4) %}</a></li>
+            <li><a href="#">{% print (8 + (i/15)|int()) ~ ':' ~ (i * 4)%60 ~ ' PM' %}</a></li>
 	    {% endfor %}
           </ul>
         </li>
@@ -94,7 +94,7 @@
 	  <form method = "post">
 	    <input type = "radio" name = "time" value = {% print i * 4 %}>
 
-	  {% print i * 4 %}
+	  {% print (8 + (i/15)|int()) ~ ':' ~ (i * 4)%60 ~ ' PM' %}
         </div>
       </div>
       <!-- End Feed Entry -->

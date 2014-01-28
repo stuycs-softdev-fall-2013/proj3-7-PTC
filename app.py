@@ -103,8 +103,9 @@ def logout():
 	
 @app.route('/chooser', methods = ["POST","GET"])
 def chooser():
-	if request.method == 'GET':
+	if isLoggedIn():
 		return render_template ('chooser.html', teacher = registeredteacherlist, length = len(registeredteacherlist), name = login.getParentName(getUsername()))
+	return redirect ('/')
 
 
 if __name__ == '__main__':
