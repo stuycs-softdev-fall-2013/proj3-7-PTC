@@ -9,6 +9,12 @@ app.secret_key = "PTC"
 registeredteacherlist = ["Zamansky, Mike", "Brownmykolyk, Topher", "Brooks, Peter", "Cocoros, Jim"]
 zparents = ["p1","p2","p3","p4","p5"]
 
+def isLoggedIn():
+	if "username" in session:
+		return True
+	else:
+		return False
+
 @app.route('/',methods=["POST","GET"])
 def home():
         if request.method == 'GET':
@@ -73,14 +79,19 @@ def tr():
 def ppl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
         if request.method == 'GET':
-                return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist))
+		if isLoggedIn():
+			return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist))
+		else:
+			return redirect ('/')
 
 @app.route('/teacherpostlogin',methods=["POST","GET"])
 def tpl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
-        if request.method == 'GET':	
-                return render_template("teacherpostlogin.html", zparents = zparents, length = len(zparents))
-
+        if request.method == 'GET':
+		if isLoggedIn():
+			return render_template("teacherpostlogin.html", zparents = zparents, length = len(zparents))
+		else:
+			return redirect ('/')
 @app.route('/logout',methods=["POST","GET"])
 def logout():
         if request.method == 'GET':
@@ -88,11 +99,7 @@ def logout():
                 return redirect("/")
 	
 
-def isLoggedIn():
-	if "username" in session:
-		return True
-	else:
-		return False
+
 
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0', port =7769)
