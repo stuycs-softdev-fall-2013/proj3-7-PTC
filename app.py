@@ -81,10 +81,12 @@ def tr():
 @app.route('/parentpostlogin',methods=["POST","GET"])
 def ppl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
+	if request.method == 'GET':
 		if isLoggedIn():
 			return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist), name = login.getParentName(getUsername()))
 		return redirect ('/')
-
+	else:
+		return redirect ('/chooser')
 
 @app.route('/teacherpostlogin',methods=["POST","GET"])
 def tpl():
