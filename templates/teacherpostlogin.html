@@ -10,113 +10,118 @@
   <body>
     <!--________________________________________________________________________-->
     
-        <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="/parentpostlogin">
-            STUY PTC ORGANIZER
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
- 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href = "#">Schedule</a>
-          <ul class="dropdown">
-            <li class="has-dropdown">
-	    <li><label>Reservations Per 4 minutes</label></li>
-	    {% for i in range(45) %}
-            <li><a href="#">{% print (i * 4) %}</a></li>
-	    {% endfor %}
-          </ul>
-        </li>
-        <li class="divider"></li>
-        <li><a href="/logout">Logout</a></li>
-       
-     
- </ul>
-    </section>
-  </nav>
- 
-  <!-- End Top Bar -->
- 
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+	<!-- Title Area -->
+	<li class="name">
+          <h1>
+            <a href="/parentpostlogin">
+              STUY PTC ORGANIZER
+            </a>
+          </h1>
+	</li>
+	<li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+      </ul>
+      
+      <section class="top-bar-section">
+	<!-- Right Nav Section -->
+	<ul class="right">
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href = "#">Schedule</a>
+            <ul class="dropdown">
+	      <li><label>Reservations Per 4 minutes</label></li>
+	      {% for i in range(length) %}  
+	      <li class = "has-dropdown">
+		<a href="#">{% print (i * 4) %} {% print zparents[i] %}</a>
+		<ul class = "dropdown">
+		  <li><a href="#">Accept</a></li>
+		  <li><a href="#">Cancel</a></li>
+		  </ul>
+		</li>
+		  {% endfor %}
+		</ul>
+              </li>
+              <li class="divider"></li>
+              <li><a href="/logout">Logout</a></li>
+	      
+	      
+	    </ul>
+      </section>
+    </nav>
+    
+    <!-- End Top Bar -->
+    
 
     <!-- Header and Nav -->
- 
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="panel">
-        <h1>HI (Name)</h1>
-<p>
-	Here are the following reservations. 
+    
+    <div class="row">
+      <div class="large-12 columns">
+	<div class="panel">
+          <h1>HI (Name)</h1>
+	  <p>
+	    Here are the following reservations. 
+	</div>
       </div>
     </div>
-  </div>
-<br>
+    <br>
 
-  <!-- End Header and Nav -->
-  <div class="row">
+    <!-- End Header and Nav -->
+    <div class="row">
 
-   <!-- Main Feed -->
-    <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-    <div class="large-12 columns">
- 
-      {% for i in range(length) %}
-      <!-- Feed Entry -->
-      <div class="row">
-        <div class="large-10 columns">
+      <!-- Main Feed -->
+      <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+      <div class="large-12 columns">
+	
+	{% for i in range(length) %}
+	<!-- Feed Entry -->
+	<div class="row">
+          <div class="large-10 columns">
 
-	  {% print zparents[i] %}
-        </div>
+	    {% print zparents[i] %}
+          </div>
+	</div>
+	<!-- End Feed Entry -->
+	
+	<hr />
+	{% endfor %}
+
       </div>
-      <!-- End Feed Entry -->
- 
-      <hr />
-      {% endfor %}
 
-    </div>
+      
 
- 
-
- 
- <!-- Footer -->
-  
-  <footer class="row">
-    <div class="large-12 columns">
-      <hr />
-      <div class="row">
-        <div class="large-6 columns">
-          <p>© Copyright SoftDev Period 7</p>
-        </div>
-        <div class="large-6 columns">
-          <ul class="inline-list right">
-            <li><a href="https://www.facebook.com/its.only.lifee">Kelvin Mei</a></li>
-            <li><a href="https://www.facebook.com/jason.han.54?fref=ts">Jason Han</a></li>
-            <li><a href="https://www.facebook.com/shaan.sheikh.1996?fref=ts">Shaan Sheikh</a></li>
-            <li><a href="https://www.facebook.com/nicholas.galasinao?fref=ts">Nicholas Galasinao</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> 
-  </footer>
-    
-    
- 
+      
+      <!-- Footer -->
+      
+      <footer class="row">
+	<div class="large-12 columns">
+	  <hr />
+	  <div class="row">
+            <div class="large-6 columns">
+              <p>© Copyright SoftDev Period 7</p>
+            </div>
+            <div class="large-6 columns">
+              <ul class="inline-list right">
+		<li><a href="https://www.facebook.com/its.only.lifee">Kelvin Mei</a></li>
+		<li><a href="https://www.facebook.com/jason.han.54?fref=ts">Jason Han</a></li>
+		<li><a href="https://www.facebook.com/shaan.sheikh.1996?fref=ts">Shaan Sheikh</a></li>
+		<li><a href="https://www.facebook.com/nicholas.galasinao?fref=ts">Nicholas Galasinao</a></li>
+              </ul>
+            </div>
+	  </div>
+	</div> 
+      </footer>
+      
+      
+      
 
 
-    <!--________________________________________________________________________-->
+      <!--________________________________________________________________________-->
 
-    <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/foundation.min.js')}}"></script>
-    <script>
-      $(document).foundation();
-    </script>
+      <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
+      <script src="{{ url_for('static', filename='js/foundation.min.js')}}"></script>
+      <script>
+	$(document).foundation();
+      </script>
   </body>
 </html>
