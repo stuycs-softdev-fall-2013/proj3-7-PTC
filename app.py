@@ -7,7 +7,7 @@ import login
 app=Flask(__name__)
 app.secret_key = "PTC"
 registeredteacherlist = ["Zamansky, Mike", "Brownmykolyk, Topher", "Brooks, Peter", "Cocoros, Jim"]
-
+zparents = ["p1","p2","p3","p4","p5"]
 
 @app.route('/',methods=["POST","GET"])
 def home():
@@ -78,8 +78,8 @@ def ppl():
 @app.route('/teacherpostlogin',methods=["POST","GET"])
 def tpl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
-        if request.method == 'GET':
-                return render_template("teacherpostlogin.html")
+        if request.method == 'GET':	
+                return render_template("teacherpostlogin.html", zparents = zparents, length = len(zparents))
 
 @app.route('/logout',methods=["POST","GET"])
 def logout():
