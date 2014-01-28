@@ -53,6 +53,6 @@ def getTeacherName(username):
 
 def getParentName(username):
     conn = sqlite3.connect("ParentTeacher.db")
-    cursor = conn.execute('''SELECT NAME FROM PARENTLOGIN
+    cursor = conn.execute('''SELECT PARENT FROM PARENTLOGIN
     WHERE USERNAME = ?''', [username]);
     return cursor.fetchone()[0] 

@@ -83,7 +83,7 @@ def ppl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
         if request.method == 'GET':
 		if isLoggedIn():
-			return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist))
+			return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist), name = login.getParentName(getUsername()))
 		else:
 			return redirect ('/')
 
@@ -92,7 +92,7 @@ def tpl():
 #IMPORTANT, implement a check for login so that people cannot just type in the url! Implement after this page is done
         if request.method == 'GET':
 		if isLoggedIn():
-			return render_template("teacherpostlogin.html", zparents = zparents, length = len(zparents))
+			return render_template("teacherpostlogin.html", zparents = zparents, length = len(zparents), name = login.getTeacherName(getUsername()))
 		else:
 			return redirect ('/')
 @app.route('/logout',methods=["POST","GET"])
