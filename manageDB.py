@@ -3,55 +3,55 @@
 import sqlite3
 
 def insertTeacher(name, room):
-    conn = sqlite3.connect('ParentTeacher.db')
-    conn.execute('''
+    database = sqlite3.connect('ParentTeacher.db')
+    database.execute('''
     CREATE TABLE if not exists TEACHERS(NAME text, ROOM text)
 ''')
-    conn.execute ('''INSERT INTO TEACHERS 
+    database.execute ('''INSERT INTO TEACHERS 
     (NAME, ROOM) \
     VALUES (?, ?)''',[name, room])
-    conn.commit()
-    conn.close()
+    database.commit()
+    database.close()
 
 def insertParent(name, sid):
-    conn = sqlite3.connect('ParentTeacher.db')
-    conn.execute('''
+    database = sqlite3.connect('ParentTeacher.db')
+    database.execute('''
     CREATE TABLE if not exists PARENTS(NAME text, ID text)
 ''')
-    conn.execute ('''INSERT INTO PARENTS 
+    database.execute ('''INSERT INTO PARENTS 
     (NAME, ID) \
     VALUES (?, ?)''',[name, sid])
-    conn.commit()
-    conn.close()
+    database.commit()
+    database.close()
 
 def getTeacherSchedule(name):
-    conn = sqlite3.connect("ParentTeacher.db")
+    database = sqlite3.connect("ParentTeacher.db")
     q = '''SELECT TIME, PARENT FROM TEACHER 
     WHERE NAME = ?'''
-    cursor = conn.execute(q, [name])
+    cursor = database.execute(q, [name])
     time = cursor[0]
     parent = cursor[1]
-    conn.commit()
-    conn.close()
+    database.commit()
+    database.close()
 
 def getParentSchedule(name):
-    conn = sqlite3.connect("ParentTeacher.db")
+    database = sqlite3.connect("ParentTeacher.db")
     q = '''SELECT TIME, TEACHER FROM PARENT
     WHERE NAME = ?'''
-    cursor = conn.execute(q, [name])
+    cursor = database.execute(q, [name])
     time = cursor[0]
     teacher = cursor[1]
-    conn.commit()
-    conn.close()
+    database.commit()
+    database.close()
 
 def scheduleUpdate(parentName, teacherName, time):
-    conn = sqlite3.connect("ParentTeacher.db")
+    database = sqlite3.connect("ParentTeacher.db")
     t = '''SELECT TIME, PARENT FROM TEACHER 
     WHERE NAME = ?'''
-    cursorT = conn.execute(t, [name])
+    cursorT = database.execute(t, [name])
     p = '''SELECT TIME, TEACHER FROM PARENT
     WHERE NAME = ?'''
-    cursorP = conn.execute(p, [name])
+    cursorP = database.execute(p, [name])
     timeT = cursorT[0].append(time)
     parent = cursorT[1].append(parentName)
     timeP = cursorP[0].append(time)
@@ -60,11 +60,11 @@ def scheduleUpdate(parentName, teacherName, time):
     p = '''UPDATE PARENT
     set TIME = ?, TEACHER = ?
     WHERE NAME = ?'''
-    conn.execute(p [timet, teacher, parentName])
+    database.execute(p [timet, teacher, parentName])
     t = '''UPDATE TEACHER
     set TIME = ?, PARENT = ?
     WHERE NAME = ?'''
-    conn.execute(t, [timeP, parent, teacherName])
-    conn.commit()
-    conn.close()
+    database.execute(t, [timeP, parent, teacherName])
+    database.commit()
+    database.close()
     
