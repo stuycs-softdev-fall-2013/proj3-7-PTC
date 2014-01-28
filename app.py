@@ -14,6 +14,9 @@ def isLoggedIn():
 		return True
 	else:
 		return False
+		
+def getUsername():
+	return session["username"]
 
 @app.route('/',methods=["POST","GET"])
 def home():
