@@ -84,8 +84,7 @@ def ppl():
         if request.method == 'GET':
 		if isLoggedIn():
 			return render_template("parentpostlogin.html", teacher = registeredteacherlist, length = len(registeredteacherlist), name = login.getParentName(getUsername()))
-		else:
-			return redirect ('/')
+		return redirect ('/')
 
 
 @app.route('/teacherpostlogin',methods=["POST","GET"])
